@@ -16,6 +16,8 @@ import mixer
 from gtts import gTTS
 import googletrans
 from googletrans import Translator
+import json
+from plyer import notification
 
 # import alarm
 
@@ -47,12 +49,12 @@ def latestnews():
             "science" :"https://newsapi.org/v2/top-headlines?country=in&category=science&apiKey=#here paste your api key",
             "sports" :"https://newsapi.org/v2/top-headlines?country=in&category=sports&apiKey=#here paste your api key",
             "technology" :"https://newsapi.org/v2/top-headlines?country=in&category=technology&apiKey=#here paste your api key"
-}
+        }
 
     content = None
     url = None
     speak("Which field news do you want, [business] , [health] , [technology], [sports] , [entertainment] , [science]")
-    field = input("Type field news that you want: ")
+    field = takecommand()
     for key ,value in api_dict.items():
         if key.lower() in field.lower():
             url = value
@@ -309,7 +311,7 @@ def allCommands(message = 1):
             im.save("ss.jpg")    
         
         elif "translate" in query:
-                from Translator import translategl
+                from googletrans.Translator import translategl
                 query = query.replace("jarvis","")
                 query = query.replace("alexa","")
                 query = query.replace("bujji","")
